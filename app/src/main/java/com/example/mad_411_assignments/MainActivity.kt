@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener() {
             var nameText = nameBox.text
             resultBox.text = "Hello, $nameText !"
+
         }
     }
 }
