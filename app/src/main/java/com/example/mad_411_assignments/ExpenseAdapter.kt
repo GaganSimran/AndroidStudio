@@ -1,5 +1,6 @@
 package com.example.mad_411_assignments
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,13 @@ class ExpenseAdapter (
         holder.deleteButton.setOnClickListener{
             removeItem(position)
         }
+        holder.detailButton.setOnClickListener{
+            val intent = Intent(holder.itemView.context,ExpenseDetailsActivity::class.java).apply {
+                putExtra("expenseName",expense.expenseName)
+                putExtra("expenseAmount",expense.expenseAmount)
+            }
+            holder.itemView.context.startActivity(intent)
+        }
 
 
     }
@@ -47,5 +55,6 @@ class ExpenseAdapter (
         val eName:TextView = view.findViewById(R.id.nameView)
         val eAmount: TextView = view.findViewById(R.id.amountView)
         val deleteButton: Button = view.findViewById(R.id.deleteButton)
+        val detailButton: Button = view.findViewById(R.id.detailsButton)
     }
 }

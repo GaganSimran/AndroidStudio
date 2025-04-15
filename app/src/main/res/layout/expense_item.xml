@@ -27,6 +27,11 @@
         android:layout_height="wrap_content"
         android:text="BtnDelete"
         android:padding="4dp"/>
+    <Button
+        android:id="@+id/detailsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Details"/>
 
 
 

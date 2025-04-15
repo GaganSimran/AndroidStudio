@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.ceil
@@ -21,8 +22,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var amount: EditText
     private lateinit var button: Button
     private lateinit var recyclerView: RecyclerView
+    private lateinit var footerFragment: FooterFragment
+    private lateinit var headerFragment: HeaderFragment
 
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         amount = findViewById(R.id.amount)
         button = findViewById(R.id.button)
         recyclerView = findViewById(R.id.recyclerView)
+
+
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         val expenseList = mutableListOf<Expense>()
@@ -49,10 +54,18 @@ class MainActivity : AppCompatActivity() {
 
             name.text.clear()
             amount.text.clear()
+            updateTotalExpense(expenseList)
 
         }
 
     }
+    private fun updateTotalExpense(expenseList: List<Expense>) {
+        val totalAmount = expenseList.sumOf { expense -> expense.expenseAmount }
+        footerFragment.updateTotalAmount(totalAmount)
+    }
+
+
+
 
     override fun onStart() {
         super.onStart()
